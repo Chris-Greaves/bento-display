@@ -1,5 +1,5 @@
 <script>
-	import { lazyLoad } from '$lib/lazyload.js';
+	import { lazyLoad } from '$lib/lazyload';
 
 	const cardClass = 'w-full h-auto min-h-96 object-scale-down rounded-lg shadow-md bg-gray-800';
 </script>

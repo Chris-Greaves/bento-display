@@ -5,7 +5,7 @@ let options = {
     threshold: 0
 }
 
-export const lazyLoad = (image, src) => {
+export const lazyLoad = (image: HTMLImageElement, src: string) => {
     const loaded = () => {
         //image.classList.add('visible')                          // doesn't work in REPL
         image.style.opacity = "1"                                 // REPL hack to apply loading animation
