@@ -2,14 +2,13 @@ import { building } from '$app/environment';
 import { env } from '$env/dynamic/private';
 import { imageSizeFromFile } from 'image-size/fromFile'
 import type { ISizeCalculationResult } from 'image-size/types/interface';
+import fs from 'fs';
+import path from 'path';
 
 console.log(env.IMAGE_DIR);
 
 if (!building) {
 	// Generate json of all the images in the static folder for use in the app
-    const fs = await import('fs');
-    const path = await import('path');
-
     const imageDir = path.resolve(env.IMAGE_DIR);
     const files = fs.readdirSync(imageDir);
     const images = files.filter((file: any) => {
