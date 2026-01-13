@@ -3,13 +3,12 @@ import fs from 'fs';
 import path from 'path';
 
 export async function GET() {
-	// Asynchronously read 'input1.txt'
-	fs.readFile(path.resolve(env.IMAGE_DIR, "imageData.json"), { encoding: 'utf8', flag: 'r' }, (err: any, data: any) => {
-		if (err) {
+	// Synchronously read 'input2.txt'
+	try {
+		const data = fs.readFileSync(path.resolve(env.IMAGE_DIR, "imageData.json"));
+		return Response.json(JSON.parse(data.toString()));
+	} catch (err) {
 			console.error('Error reading imageData.json:', err);
 			return Response.json({imageData: []});
-		} else {
-			return Response.json(JSON.parse(data.toString()));
-		}
-	});
+	}
 }
