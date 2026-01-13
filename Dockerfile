@@ -4,6 +4,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 COPY . .
+ENV IMAGE_DIR="/app/static/images"
 RUN npm run build
 RUN npm prune --production
 
