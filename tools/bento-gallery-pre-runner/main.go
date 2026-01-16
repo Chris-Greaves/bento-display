@@ -30,11 +30,9 @@ type Photo struct {
 }
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
+	_ = godotenv.Load()
 
+	var err error
 	mediaDir, exists := os.LookupEnv("MEDIA_DIR")
 	if !exists {
 		log.Fatal("MEDIA_DIR environment variable not set")
