@@ -113,7 +113,7 @@ func createOptimisedFile(imagePath string, outPath string, maxSize int64, minQua
 			return false, err
 		}
 		if optimisedFile.Size() < maxSize {
-			log.Printf("Reduced image size by %.2f%% to %dx%d, the compressed using quality %d\n", (1.0-scaleFactor)*100.0, newWidth, newHeight, quality)
+			log.Printf("Reduced image size by %.2f%% to %dx%d, then compressed using quality %d\n", (1.0-scaleFactor)*100.0, newWidth, newHeight, quality)
 			return true, nil
 		}
 		quality -= 5

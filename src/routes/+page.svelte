@@ -13,10 +13,10 @@
 {#snippet photo(path_small, path_large, alt)}
 	<Modal wrapper={false} big={true} button={true}>
 		<Content class="m-0 items-center justify-center md:h-9/10 md:p-8">
-			<img use:lazyLoad={path_large} {alt} class="h-full w-full object-scale-down" />
+			<img src={path_large} alt={alt} class="h-full w-full object-scale-down" style="opacity: 1;" />
 		</Content>
 		<Trigger>
-			<img use:lazyLoad={path_small} {alt} class={cardClass} style="height: 100vh;" />
+			<img use:lazyLoad={path_small} alt={alt} class={cardClass} style="height: 100vh;" />
 		</Trigger>
 	</Modal>
 {/snippet}
