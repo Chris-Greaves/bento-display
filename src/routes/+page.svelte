@@ -62,15 +62,4 @@
 		opacity: 0;
 		transition: all 1s ease;
 	}
-
-	.full-image-modal {
-		height: 90vh;
-	}
-
-	.full-image-modal img {
-		padding: 4px;
-		height: 100%;
-		width: 100%;
-		object-fit: scale-down;
-	}
 </style>

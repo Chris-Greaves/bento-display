@@ -31,4 +31,5 @@ ENV IMAGE_DIR="/app/build/client/images"
 ENV MEDIA_DIR="/media"
 ENV STATIC_DIR="/app/build/client"
 COPY docker-start.sh .
+RUN chmod +x ./docker-start.sh
 CMD [ "./docker-start.sh" ]
