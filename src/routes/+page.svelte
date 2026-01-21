@@ -1,6 +1,7 @@
 <script>
 	import { lazyLoad } from '$lib/lazyload';
 	import { env } from '$env/dynamic/public';
+	import { Modal, Content, Trigger } from 'sv-popup';
 
 	let { data } = $props();
 
@@ -9,13 +10,20 @@
 
 <h1 class="p-8 text-center text-4xl">{env.PUBLIC_TITLE}</h1>
 
-{#snippet photo(path, alt)}
-	<img use:lazyLoad={path} alt={alt} class={cardClass} style="height: 100vh;" />
+{#snippet photo(path_small, path_large, alt)}
+	<Modal wrapper={false} big={true} button={true}>
+		<Content class="m-0 items-center justify-center md:h-9/10 md:p-8">
+			<img use:lazyLoad={path_large} {alt} class="h-full w-full object-scale-down" />
+		</Content>
+		<Trigger>
+			<img use:lazyLoad={path_small} {alt} class={cardClass} style="height: 100vh;" />
+		</Trigger>
+	</Modal>
 {/snippet}
 
 <div class="grid grid-cols-1 gap-4 md:hidden">
 	{#each data.imageData as image}
-		{@render photo(image.web_optimised_path, image.filename)}
+		{@render photo(image.web_optimised_path, image.web_path, image.filename)}
 	{/each}
 </div>
 
@@ -24,7 +32,7 @@
 		<div class="grid grid-cols-1 gap-4">
 			{#each data.imageData as image, i}
 				{#if i % 3 == 0}
-					{@render photo(image.web_optimised_path, image.filename)}
+					{@render photo(image.web_optimised_path, image.web_path, image.filename)}
 				{/if}
 			{/each}
 		</div>
@@ -33,7 +41,7 @@
 		<div class="grid grid-cols-1 gap-4">
 			{#each data.imageData as image, i}
 				{#if i % 3 == 1}
-					{@render photo(image.web_optimised_path, image.filename)}
+					{@render photo(image.web_optimised_path, image.web_path, image.filename)}
 				{/if}
 			{/each}
 		</div>
@@ -42,7 +50,7 @@
 		<div class="grid grid-cols-1 gap-4">
 			{#each data.imageData as image, i}
 				{#if i % 3 == 2}
-					{@render photo(image.web_optimised_path, image.filename)}
+					{@render photo(image.web_optimised_path, image.web_path, image.filename)}
 				{/if}
 			{/each}
 		</div>
@@ -53,5 +61,16 @@
 	img {
 		opacity: 0;
 		transition: all 1s ease;
+	}
+
+	.full-image-modal {
+		height: 90vh;
+	}
+
+	.full-image-modal img {
+		padding: 4px;
+		height: 100%;
+		width: 100%;
+		object-fit: scale-down;
 	}
 </style>
